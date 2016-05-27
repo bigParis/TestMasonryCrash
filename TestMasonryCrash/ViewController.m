@@ -7,21 +7,25 @@
 //
 
 #import "ViewController.h"
+#import "MasonryView.h"
 
 @interface ViewController ()
-
+@property (nonatomic, weak)  MasonryView *masonryView;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    MasonryView *masonryView = [MasonryView masonryView];
+    [self.view addSubview:masonryView];
+    self.masonryView = masonryView;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    CGRect frame = self.view.frame;
+    frame.size.height = frame.size.height * 0.5;
+    self.masonryView.frame = frame;
 }
-
 @end
